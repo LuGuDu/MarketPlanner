@@ -30,6 +30,13 @@
             android:textAlignment="viewStart"
             android:textSize="34sp" />
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:queryHint="Buscar productos..." />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_products_list"
             android:layout_width="match_parent"
