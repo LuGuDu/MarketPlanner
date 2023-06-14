@@ -1,5 +1,6 @@
 package com.lugudu.marketplanner.persistence;
 
+import com.lugudu.marketplanner.entity.Product;
 import com.lugudu.marketplanner.entity.ShopList;
 import com.lugudu.marketplanner.entity.Ticket;
 
@@ -9,6 +10,7 @@ public class Items {
 
     private static Vector<Ticket> tickets = new Vector<>();
     private static Vector<ShopList> shopLists = new Vector<>();
+    private static Vector<Product> products = new Vector<>();
 
 
     public static Vector<Ticket> getTickets() {
@@ -16,6 +18,8 @@ public class Items {
     }
 
     public static Vector<ShopList> getShopLists() { return shopLists; }
+
+    public static Vector<Product> getProducts() { return products;}
 
     public static void addTicket(Ticket ticket){
         tickets.add(ticket);
@@ -29,7 +33,10 @@ public class Items {
         shopLists.add(shopList);
     }
 
-    public static void removeShopList(int index){
-        shopLists.removeElementAt(index);
-    }
+    public static void removeShopList(int index) { shopLists.removeElementAt(index); }
+
+    public static void addProduct(Product product) { products.add(product); }
+
+    public static void removeProduct(int index) { products.removeElementAt(index); }
+
 }

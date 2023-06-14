@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-
     <item
         android:id="@+id/navigation_shoplist"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/bolsa_de_la_compra"
         android:title="@string/title_shoplist" />
+
+    <item
+        android:id="@+id/navigation_productos"
+        android:icon="@drawable/pear"
+        android:title="@string/title_productos" />
 
     <item
         android:id="@+id/navigation_home"
@@ -15,12 +18,12 @@
 
     <item
         android:id="@+id/navigation_catalogos"
-        android:icon="@drawable/ic_ticket_black_24dp"
+        android:icon="@drawable/open_book"
         android:title="@string/title_catalogos" />
 
     <item
         android:id="@+id/navigation_tickets"
-        android:icon="@drawable/ic_ticket_black_24dp"
+        android:icon="@drawable/factura"
         android:title="@string/title_tickets" />
 
 </menu>
