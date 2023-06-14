@@ -113,7 +113,7 @@ public class TicketsForm extends AppCompatActivity {
 
                     //guardar ticket en base de datos
                     System.out.println(position);
-                    Items.remove(position);
+                    Items.removeTicket(position);
                     Items.addTicket(ticket);
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
