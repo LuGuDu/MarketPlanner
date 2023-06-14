@@ -25,7 +25,7 @@ public class ShopListsAdapter extends RecyclerView.Adapter<ShopListsAdapter.MyVi
 
     private Context ctx;
     private Vector<ShopList> shopLists;
-    Button buttonBorrar;
+    Button buttonBorrar, buttonShareList;
     private int size = 0;
 
     public ShopListsAdapter(Vector<ShopList> shopLists, Context ctx) {
@@ -42,6 +42,7 @@ public class ShopListsAdapter extends RecyclerView.Adapter<ShopListsAdapter.MyVi
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(ctx).inflate(R.layout.shoplist_component_view, parent, false);
         buttonBorrar = view.findViewById(R.id.bt_delete_shoplist);
+        buttonShareList = view.findViewById(R.id.bt_share);
 
         return new MyViewHolder(view);
     }
@@ -76,6 +77,20 @@ public class ShopListsAdapter extends RecyclerView.Adapter<ShopListsAdapter.MyVi
                 shopLists.remove(position);
                 notifyItemRemoved(position);
                 //Items.removeShopList(position);
+            }
+        });
+
+        buttonShareList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String ticketText = "Lista de la compra: " + shopLists.get(position).getName();
+                for(int i = 0; i<shopLists.get(position).getItems().size(); i++){
+                    ticketText += "\n - " + shopLists.get(position).getItems().get(i).getItem();
+                }
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, ticketText);
+                ctx.startActivity(Intent.createChooser(shareIntent, "Compartir ticket"));
             }
         });
     }

@@ -22,7 +22,7 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="268dp"
+                    android:layout_width="168dp"
                     android:layout_height="67dp"
                     android:orientation="vertical">
 
@@ -45,10 +45,18 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/bt_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Share" />
+
+                <Button
                     android:id="@+id/bt_delete_shoplist"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Borrar" />
+
             </LinearLayout>
 
         </FrameLayout>

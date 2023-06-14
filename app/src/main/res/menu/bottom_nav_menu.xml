@@ -14,6 +14,11 @@
         android:title="@string/title_home" />
 
     <item
+        android:id="@+id/navigation_catalogos"
+        android:icon="@drawable/ic_ticket_black_24dp"
+        android:title="@string/title_catalogos" />
+
+    <item
         android:id="@+id/navigation_tickets"
         android:icon="@drawable/ic_ticket_black_24dp"
         android:title="@string/title_tickets" />

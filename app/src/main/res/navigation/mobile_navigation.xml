@@ -23,5 +23,11 @@
         android:label="@string/title_shoplist"
         tools:layout="@layout/fragment_shoplists" />
 
+    <fragment
+        android:id="@+id/navigation_catalogos"
+        android:name="com.lugudu.marketplanner.ui.catalogos.CatalogosFragment"
+        android:label="@string/title_catalogos"
+        tools:layout="@layout/fragment_catalogos" />
+
 
 </navigation>
