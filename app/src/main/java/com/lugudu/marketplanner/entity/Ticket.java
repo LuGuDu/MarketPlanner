@@ -25,6 +25,10 @@ public class Ticket {
         return id;
     }
 
+    public void setId(String id){
+        this.id=id;
+    }
+
     public String getLocation() {
         return location;
     }
@@ -76,4 +80,16 @@ public class Ticket {
                 ", date=" + date +
                 '}';
     }
+
+/*    public Document toDocument() {
+        Document document = new Document();
+        document.append("id", id);
+        document.append("location", location);
+        document.append("market", market);
+        document.append("totalPrice", totalPrice);
+        document.append("name", name);
+        document.append("date", date);
+
+        return document;
+    }*/
 }
