@@ -37,7 +37,6 @@ public class TicketsFragment extends Fragment {
         binding = FragmentTicketsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
         final TextView textView = binding.textTickets;
         ticketsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
@@ -45,8 +44,6 @@ public class TicketsFragment extends Fragment {
         adapter = new TicketsAdapter(Items.getTickets(), this.getContext());
         ticketsRV.setLayoutManager(new LinearLayoutManager(getActivity()));
         ticketsRV.setAdapter(adapter);
-
-        //
 
         FloatingActionButton fab_new_ticket = root.findViewById(R.id.fab_new_ticket);
         fab_new_ticket.setOnClickListener(new View.OnClickListener() {

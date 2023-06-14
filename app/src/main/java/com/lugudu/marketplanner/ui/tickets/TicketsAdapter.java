@@ -1,6 +1,5 @@
 package com.lugudu.marketplanner.ui.tickets;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lugudu.marketplanner.R;
 import com.lugudu.marketplanner.entity.Ticket;
-import com.lugudu.marketplanner.persistence.Items;
 
 import java.util.Vector;
 
@@ -24,9 +22,6 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
     private Context ctx;
     private Vector<Ticket> ticketList;
     Button buttonBorrar;
-
-    private RecyclerView ticketsRV;
-    private TicketsAdapter adapter;
 
 
     public TicketsAdapter(Vector<Ticket> ticketList, Context ctx) {

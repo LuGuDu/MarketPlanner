@@ -29,5 +29,11 @@
         android:label="@string/title_catalogos"
         tools:layout="@layout/fragment_catalogos" />
 
+    <fragment
+        android:id="@+id/navigation_productos"
+        android:name="com.lugudu.marketplanner.ui.products.ProductsFragment"
+        android:label="@string/title_productos"
+        tools:layout="@layout/fragment_products" />
+
 
 </navigation>

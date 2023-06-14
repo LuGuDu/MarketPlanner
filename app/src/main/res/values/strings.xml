@@ -6,8 +6,9 @@
     <string name="title_tickets">Tickets</string>
     <string name="title_shoplist">Listas de compra</string>
     <string name="title_catalogos">Catalogos</string>
+    <string name="title_productos">Productos</string>
 
-
+    <string name="title_activity_productos_form">ProductsForm</string>
     <string name="title_activity_tickets_form">TicketsForm</string>
     <string name="title_activity_shoplist_form">Formulario lista</string>
 
