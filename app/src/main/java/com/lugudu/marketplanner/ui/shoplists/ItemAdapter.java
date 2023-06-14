@@ -18,9 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.lugudu.marketplanner.R;
 import com.lugudu.marketplanner.entity.ListItem;
 
-import java.lang.reflect.Array;
 import java.util.List;
-import java.util.Vector;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> {
 

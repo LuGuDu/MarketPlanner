@@ -16,9 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lugudu.marketplanner.R;
 import com.lugudu.marketplanner.databinding.FragmentShoplistsBinding;
-import com.lugudu.marketplanner.databinding.FragmentTicketsBinding;
 import com.lugudu.marketplanner.persistence.Items;
-import com.lugudu.marketplanner.ui.tickets.TicketsViewModel;
 
 public class ShopListsFragment extends Fragment {
 
@@ -34,7 +32,6 @@ public class ShopListsFragment extends Fragment {
 
         binding = FragmentShoplistsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
 
         final TextView textView = binding.textShoplists;
         shopListsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);

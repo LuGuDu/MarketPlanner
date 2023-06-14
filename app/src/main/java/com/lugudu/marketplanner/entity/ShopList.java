@@ -1,9 +1,5 @@
 package com.lugudu.marketplanner.entity;
 
-import android.os.Build;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 

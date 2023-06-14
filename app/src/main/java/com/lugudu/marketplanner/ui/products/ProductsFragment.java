@@ -58,10 +58,7 @@ public class ProductsFragment extends Fragment {
             }
         });
 
-        // Obtener la referencia al SearchView
         searchView = root.findViewById(R.id.searchView);
-
-        // Configurar el listener de búsqueda
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -76,7 +73,6 @@ public class ProductsFragment extends Fragment {
                 return true;
             }
         });
-
         return root;
     }
 
@@ -99,8 +95,6 @@ public class ProductsFragment extends Fragment {
     private Vector<Product> filterProducts(String query) {
         Vector<Product> filteredList = new Vector<>();
         for (Product product : productList) {
-            // Aquí puedes definir la lógica de filtrado según tus necesidades
-            // Por ejemplo, puedes filtrar por nombre, categoría, etc.
             if (product.getName().toLowerCase().contains(query.toLowerCase())) {
                 filteredList.add(product);
             }

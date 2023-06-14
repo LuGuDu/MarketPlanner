@@ -2,7 +2,6 @@ package com.lugudu.marketplanner.ui.shoplists;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.lugudu.marketplanner.R;
-import com.lugudu.marketplanner.entity.ListItem;
 import com.lugudu.marketplanner.entity.ShopList;
-import com.lugudu.marketplanner.entity.Ticket;
-import com.lugudu.marketplanner.persistence.Items;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -76,7 +72,6 @@ public class ShopListsAdapter extends RecyclerView.Adapter<ShopListsAdapter.MyVi
             public void onClick(View v) {
                 shopLists.remove(position);
                 notifyItemRemoved(position);
-                //Items.removeShopList(position);
             }
         });
 

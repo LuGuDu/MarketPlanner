@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.lugudu.marketplanner.MainActivity;
 import com.lugudu.marketplanner.R;
 import com.lugudu.marketplanner.entity.ListItem;
@@ -21,7 +20,6 @@ import com.lugudu.marketplanner.persistence.Items;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 
 public class ShopListsForm extends AppCompatActivity {
@@ -77,14 +75,11 @@ public class ShopListsForm extends AppCompatActivity {
         if(modificar.equals("true")){
             //MODIFICAR TICKET
             btnGuardar.setText("Modificar");
-
             et_name.setText(listName);
-
 
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Crea un objeto Ticket con los valores ingresados por el usuario
                     String name = et_name.getText().toString();
 
                     ShopList shopList = new ShopList(name, listItems);
@@ -98,7 +93,6 @@ public class ShopListsForm extends AppCompatActivity {
                     startActivity(intent);
                     finish();
 
-                    // Muestra un mensaje o realiza alguna acción después de guardar el ticket
                     Toast.makeText(ShopListsForm.this, "Lista actualizada", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -111,14 +105,6 @@ public class ShopListsForm extends AppCompatActivity {
                 public void onClick(View v) {
 
                     String name = et_name.getText().toString();
-
-                    // Recorrer los elementos del adaptador y actualizar sus nombres
-                    for (int i = 0; i < adapter.getItems().size(); i++) {
-                        ListItem item = adapter.getItems().get(i);
-                        // Actualizar el nombre del elemento con el nuevo nombre
-
-                    }
-
                     ShopList shopList = new ShopList(name, listItems);
 
                     //guardar ticket en base de datos
@@ -128,7 +114,6 @@ public class ShopListsForm extends AppCompatActivity {
                     startActivity(intent);
                     finish();
 
-                    // Muestra un mensaje o realiza alguna acción después de guardar el ticket
                     Toast.makeText(ShopListsForm.this, "Lista creada", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -141,7 +126,6 @@ public class ShopListsForm extends AppCompatActivity {
                 listItems.add(newItem);
                 adapter = new ItemAdapter(listItems, getApplicationContext());
                 rv_items.setAdapter(adapter);
-
             }
         });
 
@@ -150,14 +134,10 @@ public class ShopListsForm extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        // Crea e inicializa el LayoutManager
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
 
-        // Adjunta el LayoutManager al RecyclerView
         rv_items.setLayoutManager(layoutManager);
-
         adapter = new ItemAdapter(listItems, this.getApplicationContext());
         rv_items.setAdapter(adapter);
     }
-
 }
