@@ -34,6 +34,14 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ui.tickets.TicketsGraphics"
+            android:exported="false"
+            android:label="@string/title_activity_tickets_graphics">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.shoplists.ShopListsForm"
             android:exported="false"
             android:label="@string/title_activity_shoplist_form"

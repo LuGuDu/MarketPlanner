@@ -12,4 +12,7 @@
     <string name="title_activity_tickets_form">TicketsForm</string>
     <string name="title_activity_shoplist_form">Formulario lista</string>
 
+    <string name="title_activity_tickets_graphics">Grafico de gastos</string>
+
+
 </resources>

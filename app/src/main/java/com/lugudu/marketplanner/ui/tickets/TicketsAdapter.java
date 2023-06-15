@@ -55,7 +55,7 @@ public class TicketsAdapter extends RecyclerView.Adapter<TicketsAdapter.MyViewHo
                 intent.putExtra("name", ticketList.get(position).getName());
                 intent.putExtra("market", ticketList.get(position).getMarket());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    intent.putExtra("date", ticketList.get(position).getDate());
+                    intent.putExtra("date", ticketList.get(position).getDate().toString());
                 }
                 intent.putExtra("location", ticketList.get(position).getLocation());
                 intent.putExtra("price", ticketList.get(position).getTotalPrice());

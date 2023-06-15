@@ -7,16 +7,44 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/bar_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btn_tickets_graphics"
+            android:layout_width="92dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ver gastos" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_new_ticket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.78"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="403dp"
-        android:layout_height="620dp"
+        android:layout_width="418dp"
+        android:layout_height="469dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616">
+        app:layout_constraintTop_toTopOf="@+id/bar_options"
+        app:layout_constraintVertical_bias="0.32">
 
         <TextView
             android:id="@+id/text_tickets"
@@ -33,20 +61,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_tickets_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="523dp" />
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_new_ticket"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.964"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.874"
-        app:srcCompat="@android:drawable/ic_input_add" />
 </androidx.constraintlayout.widget.ConstraintLayout>

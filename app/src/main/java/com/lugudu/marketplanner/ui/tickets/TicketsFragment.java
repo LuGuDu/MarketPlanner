@@ -27,7 +27,7 @@ public class TicketsFragment extends Fragment {
     private FragmentTicketsBinding binding;
     private RecyclerView ticketsRV;
     private TicketsAdapter adapter;
-
+    Button btn_tickets_graphics;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,6 +50,14 @@ public class TicketsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(root.getContext().getApplicationContext(), TicketsForm.class);
+                startActivity(intent);
+            }
+        });
+        btn_tickets_graphics = root.findViewById(R.id.btn_tickets_graphics);
+        btn_tickets_graphics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(root.getContext().getApplicationContext(), TicketsGraphics.class);
                 startActivity(intent);
             }
         });
