@@ -24,12 +24,14 @@ import android.widget.Toast;
 import com.lugudu.marketplanner.MainActivity;
 import com.lugudu.marketplanner.R;
 import com.lugudu.marketplanner.persistence.Items;
+import com.lugudu.marketplanner.ui.products.ProductsForm;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.Locale;
 
@@ -100,6 +102,11 @@ public class TicketsForm extends AppCompatActivity {
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(!checkForm()){
+                        Toast.makeText(TicketsForm.this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     // Crea un objeto Ticket con los valores ingresados por el usuario
                     String location = et_location.getText().toString();
                     String market = et_market.getText().toString();
@@ -132,6 +139,11 @@ public class TicketsForm extends AppCompatActivity {
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(!checkForm()){
+                        Toast.makeText(TicketsForm.this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     // Crea un objeto Ticket con los valores ingresados por el usuario
                     String location = et_location.getText().toString();
                     String market = et_market.getText().toString();
@@ -219,5 +231,33 @@ public class TicketsForm extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    public boolean checkForm(){
+        boolean correct = true;
+
+        if (et_location.getText() == null || et_location.getText().toString().trim().length() == 0 ){
+            correct = false;
+        } else if (et_market.getText() == null || et_market.getText().toString().trim().length() == 0){
+            correct = false;
+        } else if (et_totalPrice.getText() == null || Double.parseDouble(et_totalPrice.getText().toString()) == 0.0){
+            correct = false;
+        } else if (et_name.getText() == null || et_name.getText().toString().trim().length() == 0){
+            correct = false;
+        }
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            if(et_date.getText() == null){
+                correct = false;
+            } else{
+                try {
+                    LocalDate.parse(et_date.getText().toString());
+                } catch (DateTimeParseException e) {
+                    correct = false;
+                }
+            }
+        }
+
+        return correct;
     }
 }

@@ -70,6 +70,10 @@ public class ProductsForm extends AppCompatActivity {
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(!checkForm()){
+                        Toast.makeText(ProductsForm.this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     String category = et_category.getText().toString();
                     String market = et_market.getText().toString();
                     Double price = Double.parseDouble(et_totalPrice.getText().toString());
@@ -91,12 +95,16 @@ public class ProductsForm extends AppCompatActivity {
                 }
             });
         } else {
-            //CREAR TICKET
+            //CREAR PRODUCTO
             btnGuardar.setText("Crear");
 
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(!checkForm()){
+                        Toast.makeText(ProductsForm.this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     String category = et_category.getText().toString();
                     String market = et_market.getText().toString();
                     Double price = Double.parseDouble(et_totalPrice.getText().toString());
@@ -117,5 +125,21 @@ public class ProductsForm extends AppCompatActivity {
             });
         }
 
+    }
+
+    public boolean checkForm(){
+        boolean correct = true;
+
+        if (et_category.getText() == null || et_category.getText().toString().trim().length() == 0 ){
+            correct = false;
+        } else if (et_market.getText() == null || et_market.getText().toString().trim().length() == 0){
+            correct = false;
+        } else if (et_totalPrice.getText() == null || Double.parseDouble(et_totalPrice.getText().toString()) == 0.0){
+            correct = false;
+        } else if (et_name.getText() == null || et_name.getText().toString().trim().length() == 0){
+            correct = false;
+        }
+
+        return correct;
     }
 }

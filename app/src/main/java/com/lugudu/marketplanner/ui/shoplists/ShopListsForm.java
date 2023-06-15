@@ -17,6 +17,7 @@ import com.lugudu.marketplanner.R;
 import com.lugudu.marketplanner.entity.ListItem;
 import com.lugudu.marketplanner.entity.ShopList;
 import com.lugudu.marketplanner.persistence.Items;
+import com.lugudu.marketplanner.ui.products.ProductsForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +81,10 @@ public class ShopListsForm extends AppCompatActivity {
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if(!checkForm()){
+                        Toast.makeText(ShopListsForm.this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     String name = et_name.getText().toString();
 
                     ShopList shopList = new ShopList(name, listItems);
@@ -104,7 +109,10 @@ public class ShopListsForm extends AppCompatActivity {
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    if(!checkForm()){
+                        Toast.makeText(ShopListsForm.this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     String name = et_name.getText().toString();
                     ShopList shopList = new ShopList(name, listItems);
 
@@ -141,5 +149,14 @@ public class ShopListsForm extends AppCompatActivity {
         rv_items.setLayoutManager(layoutManager);
         adapter = new ItemAdapter(listItems, this.getApplicationContext());
         rv_items.setAdapter(adapter);
+    }
+
+    public boolean checkForm(){
+        boolean correct = true;
+        if (et_name.getText() == null || et_name.getText().toString().trim().length() == 0){
+            correct = false;
+        }
+
+        return correct;
     }
 }
