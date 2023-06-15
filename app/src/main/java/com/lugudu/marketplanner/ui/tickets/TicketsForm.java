@@ -6,10 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -18,6 +20,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +28,7 @@ import com.lugudu.marketplanner.MainActivity;
 import com.lugudu.marketplanner.R;
 import com.lugudu.marketplanner.persistence.Items;
 import com.lugudu.marketplanner.ui.products.ProductsForm;
+import com.lugudu.marketplanner.ui.shoplists.ShopListsFragment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,6 +36,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -42,7 +47,7 @@ public class TicketsForm extends AppCompatActivity {
     private EditText et_totalPrice;
     private EditText et_name;
     private EditText et_date;
-    private Button btnGuardar, btnEscanear;
+    private Button btnGuardar, btnEscanear, bt_cancel;
 
     String ticketId, ticketName, ticketMarket, ticketDate, ticketLocation, modificar;
     double ticketPrice;
@@ -72,6 +77,7 @@ public class TicketsForm extends AppCompatActivity {
 
         btnGuardar = findViewById(R.id.button_save);
         btnEscanear = findViewById(R.id.bt_foto);
+        bt_cancel = findViewById(R.id.bt_cancel);
 
         Intent intent = getIntent();
         ticketId = intent.getStringExtra("id");
@@ -124,9 +130,7 @@ public class TicketsForm extends AppCompatActivity {
                     Items.addTicket(ticket);
                     Items.saveTickets(getApplicationContext());
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    back();
 
                     // Muestra un mensaje o realiza alguna acción después de guardar el ticket
                     Toast.makeText(TicketsForm.this, "Ticket actualizado", Toast.LENGTH_SHORT).show();
@@ -159,9 +163,7 @@ public class TicketsForm extends AppCompatActivity {
                     Items.addTicket(ticket);
                     Items.saveTickets(getApplicationContext());
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    back();
 
                     // Muestra un mensaje o realiza alguna acción después de guardar el ticket
                     Toast.makeText(TicketsForm.this, "Ticket guardado", Toast.LENGTH_SHORT).show();
@@ -183,6 +185,57 @@ public class TicketsForm extends AppCompatActivity {
                 }
             }
         });
+
+        et_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog();
+            }
+        });
+
+        bt_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back();
+            }
+        });
+    }
+
+    public void back() {
+        Fragment TicketsFragment = new TicketsFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(android.R.id.content, TicketsFragment);
+        fragmentTransaction.commit();
+
+        finish();
+    }
+
+    private void showDatePickerDialog() {
+        // Obtiene la fecha actual para mostrarla como fecha predeterminada en el diálogo
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Crea una instancia de DatePickerDialog y establece la fecha predeterminada
+        DatePickerDialog datePickerDialog = new DatePickerDialog(TicketsForm.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                // Actualiza el campo de texto con la fecha seleccionada
+                String stringMonth = "";
+                if(month + 1 < 10){
+                    stringMonth = "0" + (month+1);
+                } else {
+                    stringMonth = String.valueOf((month+1));
+                }
+                String selectedDate = year + "-" + stringMonth + "-" + dayOfMonth;
+                et_date.setText(selectedDate);
+            }
+        }, year, month, dayOfMonth);
+
+        // Muestra el diálogo de selección de fecha
+        datePickerDialog.show();
     }
 
     // Método para abrir la cámara

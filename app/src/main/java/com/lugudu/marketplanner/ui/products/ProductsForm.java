@@ -8,6 +8,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.lugudu.marketplanner.MainActivity;
 import com.lugudu.marketplanner.R;
@@ -20,7 +23,7 @@ public class ProductsForm extends AppCompatActivity {
     private EditText et_totalPrice;
     private EditText et_name;
     private EditText et_category;
-    private Button btnGuardar;
+    private Button btnGuardar, bt_cancel;
 
     String productId, productName, productMarket, productCategory, modificar;
     double productPrice;
@@ -45,6 +48,7 @@ public class ProductsForm extends AppCompatActivity {
         et_category = findViewById(R.id.et_product_category);
 
         btnGuardar = findViewById(R.id.button_save);
+        bt_cancel = findViewById(R.id.bt_cancel);
 
         Intent intent = getIntent();
         productId = intent.getStringExtra("id");
@@ -55,11 +59,11 @@ public class ProductsForm extends AppCompatActivity {
         position = intent.getIntExtra("position", 0);
         modificar = intent.getStringExtra("modificar");
 
-        if(modificar == null){
+        if (modificar == null) {
             modificar = "false";
         }
 
-        if(modificar.equals("true")){
+        if (modificar.equals("true")) {
             //MODIFICAR TICKET
             btnGuardar.setText("Modificar");
             et_category.setText(productCategory);
@@ -70,7 +74,7 @@ public class ProductsForm extends AppCompatActivity {
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(!checkForm()){
+                    if (!checkForm()) {
                         Toast.makeText(ProductsForm.this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -87,9 +91,10 @@ public class ProductsForm extends AppCompatActivity {
                     Items.addProduct(product);
                     Items.saveProducts(getApplicationContext());
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    /* Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                    finish();
+                    finish();*/
+                    back();
 
                     Toast.makeText(ProductsForm.this, "Producto actualizado", Toast.LENGTH_SHORT).show();
                 }
@@ -101,7 +106,7 @@ public class ProductsForm extends AppCompatActivity {
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(!checkForm()){
+                    if (!checkForm()) {
                         Toast.makeText(ProductsForm.this, "Formato incorrecto", Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -116,27 +121,48 @@ public class ProductsForm extends AppCompatActivity {
                     Items.addProduct(product);
                     Items.saveProducts(getApplicationContext());
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    back();
+
+                    /* Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
-                    finish();
+                    finish();*/
 
                     Toast.makeText(ProductsForm.this, "Producto guardado", Toast.LENGTH_SHORT).show();
                 }
             });
         }
 
+        bt_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /* Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();*/
+                back();
+            }
+        });
     }
 
-    public boolean checkForm(){
+    public void back() {
+        Fragment productsFragment = new ProductsFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(android.R.id.content, productsFragment);
+        fragmentTransaction.commit();
+
+        finish();
+    }
+
+    public boolean checkForm() {
         boolean correct = true;
 
-        if (et_category.getText() == null || et_category.getText().toString().trim().length() == 0 ){
+        if (et_category.getText() == null || et_category.getText().toString().trim().length() == 0) {
             correct = false;
-        } else if (et_market.getText() == null || et_market.getText().toString().trim().length() == 0){
+        } else if (et_market.getText() == null || et_market.getText().toString().trim().length() == 0) {
             correct = false;
-        } else if (et_totalPrice.getText() == null || Double.parseDouble(et_totalPrice.getText().toString()) == 0.0){
+        } else if (et_totalPrice.getText() == null || Double.parseDouble(et_totalPrice.getText().toString()) == 0.0) {
             correct = false;
-        } else if (et_name.getText() == null || et_name.getText().toString().trim().length() == 0){
+        } else if (et_name.getText() == null || et_name.getText().toString().trim().length() == 0) {
             correct = false;
         }
 

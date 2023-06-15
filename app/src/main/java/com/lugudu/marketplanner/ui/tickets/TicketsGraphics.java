@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -66,10 +69,19 @@ public class TicketsGraphics extends AppCompatActivity {
         btn_regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(root.getContext().getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                back();
             }
         });
+    }
+
+    public void back() {
+        Fragment TicketsFragment = new TicketsFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(android.R.id.content, TicketsFragment);
+        fragmentTransaction.commit();
+
+        finish();
     }
 
     private void setupBarChart() {

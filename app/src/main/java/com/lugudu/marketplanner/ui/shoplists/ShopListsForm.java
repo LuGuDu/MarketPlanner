@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +21,7 @@ import com.lugudu.marketplanner.entity.ListItem;
 import com.lugudu.marketplanner.entity.ShopList;
 import com.lugudu.marketplanner.persistence.Items;
 import com.lugudu.marketplanner.ui.products.ProductsForm;
+import com.lugudu.marketplanner.ui.products.ProductsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +31,7 @@ public class ShopListsForm extends AppCompatActivity {
 
     private EditText et_name;
 
-    private Button btnGuardar, bt_agregar_item;
+    private Button btnGuardar, bt_agregar_item, bt_cancel;
 
     String listId, listName, modificar;
     private List<ListItem> listItems;
@@ -54,6 +58,7 @@ public class ShopListsForm extends AppCompatActivity {
 
         btnGuardar = findViewById(R.id.button_save);
         bt_agregar_item = findViewById(R.id.bt_agregar_item);
+        bt_cancel = findViewById(R.id.bt_cancel);
         rv_items = findViewById(R.id.rv_items);
 
         Intent intent = getIntent();
@@ -95,9 +100,7 @@ public class ShopListsForm extends AppCompatActivity {
                     Items.addShopList(shopList);
                     Items.saveShoplists(getApplicationContext());
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    back();
 
                     Toast.makeText(ShopListsForm.this, "Lista actualizada", Toast.LENGTH_SHORT).show();
                 }
@@ -120,9 +123,7 @@ public class ShopListsForm extends AppCompatActivity {
                     Items.addShopList(shopList);
                     Items.saveShoplists(getApplicationContext());
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    back();
 
                     Toast.makeText(ShopListsForm.this, "Lista creada", Toast.LENGTH_SHORT).show();
                 }
@@ -139,6 +140,23 @@ public class ShopListsForm extends AppCompatActivity {
             }
         });
 
+        bt_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back();
+            }
+        });
+
+    }
+
+    public void back() {
+        Fragment ShopListsFragment = new ShopListsFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(android.R.id.content, ShopListsFragment);
+        fragmentTransaction.commit();
+
+        finish();
     }
 
     @Override
