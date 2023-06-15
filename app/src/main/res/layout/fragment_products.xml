@@ -7,24 +7,15 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="403dp"
-        android:layout_height="620dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.616">
+        android:id="@+id/linearLayout2"
+        android:layout_width="413dp"
+        android:layout_height="108dp"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/text_products"
             android:layout_width="176dp"
             android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
             android:rotationX="0"
             android:text="Productos"
             android:textAlignment="viewStart"
@@ -35,7 +26,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:iconifiedByDefault="false"
-            android:queryHint="Buscar productos..." />
+            android:queryHint="Buscar productos...">
+
+        </androidx.appcompat.widget.SearchView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="401dp"
+        android:layout_height="568dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.616">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_products_list"
@@ -56,4 +62,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.874"
         app:srcCompat="@android:drawable/ic_input_add" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
