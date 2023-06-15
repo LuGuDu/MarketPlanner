@@ -1,9 +1,10 @@
 package com.lugudu.marketplanner.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class Ticket {
+public class Ticket implements Serializable {
 
     private String id; //UUID String
     private String location;

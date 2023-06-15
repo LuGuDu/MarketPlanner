@@ -1,8 +1,9 @@
 package com.lugudu.marketplanner.entity;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Product {
+public class Product implements Serializable {
 
     private String id; //UUID String
     private String market;

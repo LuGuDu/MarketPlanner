@@ -92,6 +92,7 @@ public class TicketsForm extends AppCompatActivity {
             et_market.setText(ticketMarket);
             et_totalPrice.setText(Double.toString(ticketPrice));
             et_name.setText(ticketName);
+            et_date.setText(ticketDate);
             if(ticketDate!=null){
                 et_date.setText(ticketDate);
             }
@@ -105,16 +106,16 @@ public class TicketsForm extends AppCompatActivity {
                     Double totalPrice = Double.parseDouble(et_totalPrice.getText().toString());
                     String name = et_name.getText().toString();
                     LocalDate date = null;
-/*                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    date = LocalDate.parse(et_date.getText().toString());
-                }*/
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        date = LocalDate.parse(et_date.getText().toString());
+                    }
                     Ticket ticket = new Ticket(location, market, totalPrice, name, date);
                     ticket.setId(ticketId);
 
                     //guardar ticket en base de datos
-                    System.out.println(position);
                     Items.removeTicket(position);
                     Items.addTicket(ticket);
+                    Items.saveTickets(getApplicationContext());
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -137,13 +138,14 @@ public class TicketsForm extends AppCompatActivity {
                     Double totalPrice = Double.parseDouble(et_totalPrice.getText().toString());
                     String name = et_name.getText().toString();
                     LocalDate date = null;
-/*                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                    date = LocalDate.parse(et_date.getText().toString());
-                }*/
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        date = LocalDate.parse(et_date.getText().toString());
+                    }
                     Ticket ticket = new Ticket(location, market, totalPrice, name, date);
 
                     //guardar ticket en base de datos
                     Items.addTicket(ticket);
+                    Items.saveTickets(getApplicationContext());
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);

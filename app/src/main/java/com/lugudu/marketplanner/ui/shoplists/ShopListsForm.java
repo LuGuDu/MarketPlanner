@@ -88,6 +88,7 @@ public class ShopListsForm extends AppCompatActivity {
                     //guardar lista en base de datos
                     Items.removeShopList(position);
                     Items.addShopList(shopList);
+                    Items.saveShoplists(getApplicationContext());
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -109,6 +110,7 @@ public class ShopListsForm extends AppCompatActivity {
 
                     //guardar ticket en base de datos
                     Items.addShopList(shopList);
+                    Items.saveShoplists(getApplicationContext());
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);

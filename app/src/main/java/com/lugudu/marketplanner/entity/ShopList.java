@@ -1,9 +1,10 @@
 package com.lugudu.marketplanner.entity;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
-public class ShopList {
+public class ShopList implements Serializable {
 
     private String id;
     private String name;

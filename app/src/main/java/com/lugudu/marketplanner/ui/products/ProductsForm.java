@@ -81,6 +81,7 @@ public class ProductsForm extends AppCompatActivity {
                     //guardar ticket en base de datos
                     Items.removeProduct(position);
                     Items.addProduct(product);
+                    Items.saveProducts(getApplicationContext());
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
@@ -105,6 +106,7 @@ public class ProductsForm extends AppCompatActivity {
 
                     //guardar ticket en base de datos
                     Items.addProduct(product);
+                    Items.saveProducts(getApplicationContext());
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
